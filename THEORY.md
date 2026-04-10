@@ -24,7 +24,9 @@ For each pixel, as the polarizer angle $\phi_{pol}$ rotates, the measured intens
 $$I(\phi_{pol}) = \frac{I_{max} + I_{min}}{2} + \frac{I_{max} - I_{min}}{2} \cos(2\phi_{pol} - 2\phi)$$
 
 From this curve, we extract the **Degree of Linear Polarization ($\rho$ or DoLP)**:
+
 $$\rho = \frac{I_{max} - I_{min}}{I_{max} + I_{min}}$$
+
 And the **Angle of Polarization ($\phi$)**, which is the phase at which the maximum (or minimum) intensity occurs.
 
 ---
@@ -44,17 +46,25 @@ The relationship depends on whether the dominant reflection is **specular** (mir
 The zenith angle $\theta$ (the tilt of the surface away from the camera) is derived from the **Degree of Polarization ($\rho$)** using Fresnel equations. 
 
 The Fresnel reflection coefficients $R_s$ (perpendicular) and $R_p$ (parallel) determine how much light is reflected in each component:
-$$R_s(\theta) = \left| \frac{n_1 \cos\theta - n_2 \cos\theta_t}{n_1 \cos\theta + n_2 \cos\theta_t} \right|^2, \quad R_p(\theta) = \left| \frac{n_1 \cos\theta_t - n_2 \cos\theta}{n_1 \cos\theta_t + n_2 \cos\theta} \right|^2$$
-*(Where $n$ is the refractive index and $\theta_t$ is the angle of transmission via Snell's Law).*
+
+$$ R_s(\theta) = \left| \frac{n_1 \cos\theta - n_2 \cos\theta_t}{n_1 \cos\theta + n_2 \cos\theta_t} \right|^2 $$
+
+$$R_p(\theta) = \left| \frac{n_1 \cos\theta_t - n_2 \cos\theta}{n_1 \cos\theta_t + n_2 \cos\theta} \right|^2 $$
+
+Where $n$ is the refractive index and $\theta_t$ is the angle of transmission.
 
 ### A. Specular Case
 For purely specular surfaces, the degree of polarization is defined by the ratio of these coefficients:
+
 $$\rho_{specular} = \frac{R_s - R_p}{R_s + R_p} = \frac{2\sin^2\theta \cos\theta \sqrt{n^2 - \sin^2\theta}}{n^2 - \sin^2\theta - n^2\sin^2\theta + 2\sin^4\theta}$$
+
 By measuring $\rho$ and assuming a refractive index ($n \approx 1.5$ for most plastics/glass), we can numerically solve for $\theta$.
 
 ### B. Diffuse Case
 For diffuse reflection, light enters the material, scatters, and is refracted back out. The polarization occurs as light *exits* the surface. The formula shifts to:
+
 $$\rho_{diffuse} = \frac{(n - 1/n)^2 \sin^2\theta}{2 + 2n^2 - (n + 1/n)^2 \sin^2\theta + 4\cos\theta \sqrt{n^2 - \sin^2\theta}}$$
+
 Generally, $\rho_{diffuse}$ is much lower than $\rho_{specular}$, meaning diffuse surfaces produce a weaker polarization signal but are often more stable for matte objects.
 
 ---
